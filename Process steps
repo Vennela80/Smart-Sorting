@@ -1,0 +1,102 @@
+Here's a step-by-step guide to execute the Smart Sorting project code:
+
+Prerequisites
+Python 3.8+ installed
+
+TensorFlow 2.10+ (with GPU support recommended)
+
+Dataset organized in the required structure
+
+Step 1: Install Dependencies
+bash
+pip install tensorflow opencv-python numpy matplotlib
+================================================================
+Step 2: Dataset Setup
+Create this folder structure:
+
+++++text
+smart_sorting/
+    dataset/
+        train/
+            fresh/
+            medium/
+            rotten/
+        test/
+            fresh/
+            medium/
+            rotten/
+Populate folders with images:
+
+Use Roboflow's Fruit Freshness Dataset
+
+Or collect your own images
+=================================================================
+Step 3: Run Training
+Save the training code as train.py
+Execute from terminal:
+
+++++bash
+python train.py
+Expected Output:
+
+++++text
+Found 8000 images belonging to 3 classes.
+Found 2000 images belonging to 3 classes.
+Epoch 1/20
+250/250 [==============================] - 120s 480ms/step - loss: 0.4567 - accuracy: 0.8321...
+
+
+Trained model will be saved as smart_sorting_model.h5
+======================================================================
+Step 4: Run Predictions
+
+Save the prediction code as predict.py
+Test with an image:
+
+++++bash
+python predict.py --image path/to/test_image.jpg
+Example Output:
+
+++++text
+Predicted: rotten (Confidence: 0.97)
+Step 5: Real-Time Camera Integration
+For conveyor belt/supermarket scenario:
+
+++bash
+python camera_integration.py
+(Create this file using the OpenCV code provided earlier)
+============================================================
+Key Execution Notes
+Hardware Recommendations:
+
+GPU: NVIDIA GPU with CUDA support for faster training
+RAM: Minimum 8GB (16GB recommended)
+Storage: SSD for faster data loading
+
+Common Errors & Fixes:
+
+No module named 'tensorflow': Reinstall TensorFlow
+Invalid image path: Check dataset directory structure
+CUDA out of memory: Reduce batch size (16 instead of 32)
+
+
+=============================================================
+Deployment Options
+Web App (Flask):
+
++++bash
+
+pip install flask
+python app.py
+Mobile App (TensorFlow Lite):
+
++++python
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+open("model.tflite", "wb").write(tflite_model)
+
+
+
+Execution Workflow Summary
+Prepare dataset → 2. Train model → 3. Test predictions → 4. Integrate with hardware → 5. Deploy
