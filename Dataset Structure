@@ -1,0 +1,10 @@
+mart_sorting/
+    dataset/
+        train/
+            fresh/
+            medium/
+            rotten/
+        test/
+            fresh/
+            medium/
+            rotten/
